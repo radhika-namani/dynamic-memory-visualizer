@@ -1,0 +1,139 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Dynamic Memory Management Visualizer — Paging, Segmentation, Virtual Memory</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="wrap">
+    <header>
+      <img src="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='44' height='44'><rect rx='8' width='44' height='44' fill='%234cc2ff'/><text x='50%' y='58%' font-size='18' text-anchor='middle' fill='%23001418' font-family='Arial' font-weight='700'>DM</text></svg>" alt="logo" style="width:54px;height:54px;border-radius:10px"/>
+      <div>
+        <h1>Dynamic Memory Management Visualizer</h1>
+        <div class="subtitle">Paging • Segmentation • Virtual Memory — Step-through simulation for OS assignment</div>
+      </div>
+    </header>
+
+    <!-- Module selection -->
+    <div class="controls">
+      <div class="panel">
+        <label>Module</label>
+        <select id="module">
+          <option value="paging">Paging</option>
+          <option value="segmentation">Segmentation</option>
+          <option value="virtual">Virtual Memory</option>
+        </select>
+      </div>
+
+      <div class="panel">
+        <label>Algorithm (Paging)</label>
+        <select id="algo">
+          <option value="FIFO">FIFO</option>
+          <option value="LRU">LRU</option>
+        </select>
+      </div>
+
+      <div class="panel">
+        <label>Auto ms</label>
+        <input id="speed" type="number" value="700" />
+      </div>
+    </div>
+
+    <!-- Module-specific inputs -->
+    <div class="controls" id="moduleInputs">
+      <!-- Paging inputs -->
+      <div class="panel" id="pagingInputs">
+        <label>Number of frames</label>
+        <input id="frames" type="number" min="1" value="3" />
+        <label style="margin-top:10px">Reference string (space/comma)</label>
+        <input id="refstr" type="text" value="7 0 1 2 0 3 0 4 2 3 0 3 2" />
+      </div>
+
+      <!-- Segmentation inputs -->
+      <div class="panel" id="segInputs" style="display:none">
+        <label>Segments (format: name:base:limit, comma separated)</label>
+        <input id="segments" type="text" value="code:0:199,data:200:399,stack:400:599" />
+        <label style="margin-top:10px">Logical address to access (format: segmentName:offset)</label>
+        <input id="segAddr" type="text" value="code:10" />
+      </div>
+
+      <!-- Virtual memory inputs -->
+      <div class="panel" id="virtInputs" style="display:none">
+        <label>Page size (bytes)</label>
+        <input id="pageSize" type="number" min="1" value="100" />
+        <label style="margin-top:10px">Logical address (number) or reference string (space separated)</label>
+        <input id="virtRef" type="text" value="0 120 250 120 340 50 260" />
+        <label style="margin-top:8px;font-size:13px;color:var(--muted)">When reference string provided, run Step/Run processes sequence</label>
+      </div>
+    </div>
+
+    <!-- Buttons -->
+    <div class="buttons">
+      <button id="load">Load</button>
+      <button id="step" class="secondary">Step</button>
+      <button id="run" class="secondary">Run</button>
+      <button id="reset" class="secondary">Reset</button>
+      <div class="speed-control" style="margin-left:auto">
+        <label style="color:var(--muted)">Auto ms</label>
+        <input id="speed2" type="number" value="700" />
+      </div>
+    </div>
+
+    <div class="main">
+      <aside>
+        <div class="panel">
+          <h3>Simulation Controls</h3>
+          <div class="info">Load → Step (one) or Run (autoplay). Switch module to change behavior.</div>
+          <div class="stats">
+            <div class="stat">Processed: <span id="processed">0</span></div>
+            <div class="stat">Faults: <span id="faults">0</span></div>
+            <div class="stat">Hit Rate: <span id="hits">0%</span></div>
+          </div>
+        </div>
+
+        <div class="panel">
+          <h3>Table / Memory</h3>
+          <div id="tableArea" class="log">Not loaded</div>
+        </div>
+
+        <div class="panel">
+          <h3>Log</h3>
+          <div id="log" class="log">No steps yet.</div>
+        </div>
+      </aside>
+
+      <section class="viz">
+        <div class="panel">
+          <div class="frame-header">
+            <strong id="visualTitle">Frames (physical memory)</strong>
+            <span>Count: <span id="frameCount">3</span></span>
+          </div>
+          <div id="framesArea" class="frames"></div>
+        </div>
+
+        <div class="panel">
+          <strong>Reference Timeline / Accesses</strong>
+          <div id="timeline" class="timeline"></div>
+        </div>
+
+        <div class="panel">
+          <strong>Detailed Stats</strong>
+          <div class="stats">
+            <div class="stat">References: <span id="totalRefs">0</span></div>
+            <div class="stat">Faults: <span id="totalFaults">0</span></div>
+            <div class="stat">Hits: <span id="totalHits">0</span></div>
+            <div class="stat">Fault Rate: <span id="faultRate">0%</span></div>
+          </div>
+        </div>
+
+      </section>
+    </div>
+
+    <footer style="margin-top:18px;color:var(--muted);font-size:13px">Open this file in browser. Use Live Server for faster testing.</footer>
+  </div>
+
+  <script src="app.js" defer></script>
+</body>
+</html>

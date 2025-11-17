@@ -1,0 +1,320 @@
+/* ==========================================
+   Dynamic Memory Management Visualizer
+   PREMIUM UI — Glassy Dark + Smooth Bottom
+   Entire stylesheet – No patches required
+========================================== */
+
+:root {
+  --bg: #0f1216;
+  --card: #171c22;
+  --border: rgba(255, 255, 255, 0.08);
+  --text: #eef1f5;
+  --muted: #98a2ad;
+
+  --accent: #4cc2ff;
+  --accent-glow: rgba(76, 194, 255, 0.28);
+
+  --danger: #ff5f5f;
+  --danger-glow: rgba(255, 95, 95, 0.28);
+
+  --card-shadow: rgba(0, 0, 0, 0.35);
+}
+
+html, body {
+  margin: 0;
+  padding: 0;
+  background: var(--bg);
+  font-family: Inter, system-ui, sans-serif;
+  color: var(--text);
+  overflow-x: hidden;
+}
+
+/* =========== MAIN WRAPPER =========== */
+.wrap {
+  max-width: 1120px;
+  margin: 0 auto;
+  padding: 28px 22px 140px; /* space bottom for premium UI */
+  position: relative;
+}
+
+/* ======================================
+   PREMIUM BOTTOM UI SECTION (SaaS Style)
+======================================== */
+
+body::after {
+  content: "";
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 130px;
+
+  /* Smooth gradient fade ending */
+  background: linear-gradient(
+    to bottom,
+    rgba(15, 18, 22, 0) 0%,
+    rgba(15, 18, 22, 0.85) 60%,
+    rgba(15, 18, 22, 1) 100%
+  );
+
+  pointer-events: none;
+  z-index: 998;
+}
+
+/* Premium bottom bar */
+.premium-footer {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  padding: 18px 0;
+  background: rgba(23, 28, 34, 0.35);
+  backdrop-filter: blur(16px);
+  border-top: 1px solid var(--border);
+  box-shadow: 0 -6px 18px rgba(0, 0, 0, 0.4);
+  text-align: center;
+  color: var(--muted);
+  font-size: 13px;
+  z-index: 999;
+  letter-spacing: 0.2px;
+}
+
+/* Hide default footer accidentally left in HTML */
+footer { display: none !important; }
+
+/* ============== HEADER =============== */
+
+header {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin-bottom: 34px;
+}
+
+.subtitle {
+  font-size: 14px;
+  color: var(--muted);
+}
+
+/* ============== PANELS =============== */
+
+.panel {
+  background: var(--card);
+  border: 1px solid var(--border);
+  padding: 20px;
+  border-radius: 14px;
+  box-shadow: 0 4px 18px var(--card-shadow);
+}
+
+/* ============ INPUT GRID ============ */
+
+.controls {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 18px;
+  margin-bottom: 16px;
+}
+
+label {
+  font-size: 14px;
+  color: var(--muted);
+  margin-bottom: 6px;
+  display: block;
+}
+
+input,
+select {
+  width: 100%;
+  padding: 12px 14px;
+  border-radius: 8px;
+  border: 1px solid var(--border);
+  background: #0c0f13;
+  color: var(--text);
+  font-size: 15px;
+  box-sizing: border-box;
+}
+
+input:focus,
+select:focus {
+  border-color: var(--accent);
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(76, 194, 255, 0.16);
+}
+
+/* =============== BUTTONS =============== */
+
+.buttons {
+  display: flex;
+  gap: 12px;
+  margin-bottom: 24px;
+  align-items: center;
+}
+
+button {
+  padding: 10px 18px;
+  border-radius: 10px;
+  border: none;
+  background: var(--accent);
+  color: #031019;
+  font-weight: 600;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+button:hover {
+  background: #69d0ff;
+  box-shadow: 0 0 10px var(--accent-glow);
+}
+
+button.secondary {
+  background: transparent;
+  border: 1px solid var(--border);
+  color: var(--muted);
+}
+
+button.secondary:hover {
+  border-color: var(--accent);
+  color: var(--accent);
+}
+
+.speed-control {
+  margin-left: auto;
+  display: flex;
+  gap: 10px;
+  align-items: center;
+}
+
+/* ============= PAGE LAYOUT ============= */
+
+.main {
+  display: grid;
+  grid-template-columns: 310px 1fr;
+  gap: 20px;
+}
+
+@media(max-width: 900px) {
+  .main { grid-template-columns: 1fr; }
+}
+
+/* =============== FRAMES =============== */
+
+.frames {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 14px;
+  margin-top: 16px;
+}
+
+.frame {
+  width: 72px;
+  height: 72px;
+  background: #0c1014;
+  border: 1px solid var(--border);
+  border-radius: 12px;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  font-size: 22px;
+  font-weight: 700;
+
+  transition: 0.25s;
+}
+
+.frame.empty { color: var(--muted); }
+
+.frame.fault {
+  border-color: var(--danger);
+  box-shadow: 0 0 14px var(--danger-glow);
+}
+
+.frame.updated {
+  border-color: var(--accent);
+  box-shadow: 0 0 14px var(--accent-glow);
+}
+
+/* =============== TIMELINE =============== */
+
+.timeline {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-top: 16px;
+}
+
+.tick {
+  padding: 8px 12px;
+  background: #0c1014;
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  font-size: 16px;
+  font-weight: 600;
+}
+
+.tick.current {
+  border-color: var(--accent);
+  box-shadow: 0 0 8px var(--accent-glow);
+}
+
+.tick.fault {
+  background: rgba(255, 95, 95, 0.13);
+  border-color: var(--danger);
+}
+
+/* =============== LOG SECTION =============== */
+
+.log {
+  background: #0c1014;
+  border: 1px solid var(--border);
+  padding: 18px;
+  border-radius: 12px;
+
+  font-family: "JetBrains Mono", monospace;
+  font-size: 14px;
+  max-height: 310px;
+  overflow-y: auto;
+  white-space: pre-wrap;
+  line-height: 1.55;
+  color: var(--text);
+
+  scroll-behavior: smooth;
+}
+
+/* smooth gaps between entries */
+.log br { margin-bottom: 6px; }
+
+/* custom scrollbar */
+.log::-webkit-scrollbar { width: 8px; }
+.log::-webkit-scrollbar-track {
+  background: #0a0d10;
+  border-radius: 10px;
+}
+.log::-webkit-scrollbar-thumb {
+  background: #242c32;
+  border-radius: 10px;
+}
+.log::-webkit-scrollbar-thumb:hover {
+  background: #3a444c;
+}
+
+/* =============== STATS PANEL =============== */
+
+.stats {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 14px;
+  margin-top: 12px;
+}
+
+.stat {
+  padding: 12px;
+  border-radius: 10px;
+  background: #0c1014;
+  border: 1px solid var(--border);
+
+  min-width: 120px;
+  font-size: 14px;
+  font-weight: 600;
+  text-align: center;
+}
