@@ -1,6 +1,8 @@
 /* Dynamic Memory Management Visualizer
    Supports: Paging (FIFO, LRU), Segmentation, Virtual Memory
 */
+// Paging Module: FIFO + LRU implementation verified
+
 
 // ---------- State ----------
 const state = {
