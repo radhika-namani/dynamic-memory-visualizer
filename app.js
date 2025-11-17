@@ -2,6 +2,8 @@
    Supports: Paging (FIFO, LRU), Segmentation, Virtual Memory
 */
 // Paging Module: FIFO + LRU implementation verified
+// Segmentation Module: base-limit table added
+
 
 
 // ---------- State ----------
