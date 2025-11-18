@@ -1,27 +1,30 @@
-/* ==========================================
-   Dynamic Memory Management Visualizer
-   PREMIUM UI — Glassy Dark + Smooth Bottom
-   Entire stylesheet – No patches required
-========================================== */
-/* Premium UI enhancements applied */
-
+/* ======================================================
+   PREMIUM DARK UI — NEXT LEVEL VERSION
+   Cleaner layout, smoother colors, sharper readability
+====================================================== */
 
 :root {
-  --bg: #0f1216;
-  --card: #171c22;
+  --bg: #0d1014;
+  --card: #151a20;
+  --card-light: #1c222a;
   --border: rgba(255, 255, 255, 0.08);
-  --text: #eef1f5;
-  --muted: #98a2ad;
+
+  --text: #e9edf2;
+  --muted: #9ca7b3;
 
   --accent: #4cc2ff;
+  --accent-light: #7ddcff;
   --accent-glow: rgba(76, 194, 255, 0.28);
 
   --danger: #ff5f5f;
   --danger-glow: rgba(255, 95, 95, 0.28);
 
-  --card-shadow: rgba(0, 0, 0, 0.35);
+  --shadow: rgba(0, 0, 0, 0.35);
 }
 
+/* ======================================================
+   GLOBAL RESET
+====================================================== */
 html, body {
   margin: 0;
   padding: 0;
@@ -31,17 +34,16 @@ html, body {
   overflow-x: hidden;
 }
 
-/* =========== MAIN WRAPPER =========== */
 .wrap {
-  max-width: 1120px;
+  max-width: 1180px;
   margin: 0 auto;
-  padding: 28px 22px 140px; /* space bottom for premium UI */
+  padding: 32px 24px 160px;
   position: relative;
 }
 
-/* ======================================
-   PREMIUM BOTTOM UI SECTION (SaaS Style)
-======================================== */
+/* ======================================================
+   PREMIUM BOTTOM SaaS BAR
+====================================================== */
 
 body::after {
   content: "";
@@ -49,48 +51,47 @@ body::after {
   bottom: 0;
   left: 0;
   width: 100%;
-  height: 130px;
-
-  /* Smooth gradient fade ending */
+  height: 140px;
   background: linear-gradient(
     to bottom,
-    rgba(15, 18, 22, 0) 0%,
-    rgba(15, 18, 22, 0.85) 60%,
-    rgba(15, 18, 22, 1) 100%
+    rgba(13, 16, 20, 0) 0%,
+    rgba(13, 16, 20, 0.9) 60%,
+    rgba(13, 16, 20, 1) 100%
   );
-
-  pointer-events: none;
   z-index: 998;
+  pointer-events: none;
 }
 
-/* Premium bottom bar */
 .premium-footer {
   position: fixed;
   bottom: 0;
   left: 0;
   width: 100%;
   padding: 18px 0;
-  background: rgba(23, 28, 34, 0.35);
-  backdrop-filter: blur(16px);
-  border-top: 1px solid var(--border);
-  box-shadow: 0 -6px 18px rgba(0, 0, 0, 0.4);
   text-align: center;
+
+  background: rgba(20, 25, 31, 0.4);
+  backdrop-filter: blur(14px);
+  border-top: 1px solid var(--border);
+  box-shadow: 0 -10px 22px rgba(0, 0, 0, 0.5);
+
   color: var(--muted);
   font-size: 13px;
-  z-index: 999;
   letter-spacing: 0.2px;
+  z-index: 999;
 }
 
-/* Hide default footer accidentally left in HTML */
 footer { display: none !important; }
 
-/* ============== HEADER =============== */
+/* ======================================================
+   HEADER
+====================================================== */
 
 header {
   display: flex;
   align-items: center;
   gap: 16px;
-  margin-bottom: 34px;
+  margin-bottom: 36px;
 }
 
 .subtitle {
@@ -98,39 +99,44 @@ header {
   color: var(--muted);
 }
 
-/* ============== PANELS =============== */
+/* ======================================================
+   PANELS
+====================================================== */
 
 .panel {
   background: var(--card);
-  border: 1px solid var(--border);
-  padding: 20px;
   border-radius: 14px;
-  box-shadow: 0 4px 18px var(--card-shadow);
+  padding: 22px;
+  border: 1px solid var(--border);
+  box-shadow: 0 4px 18px var(--shadow);
 }
 
-/* ============ INPUT GRID ============ */
+/* ======================================================
+   CONTROLS GRID
+====================================================== */
 
 .controls {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 18px;
-  margin-bottom: 16px;
+  margin-bottom: 20px;
 }
 
 label {
+  display: block;
   font-size: 14px;
   color: var(--muted);
   margin-bottom: 6px;
-  display: block;
 }
 
 input,
 select {
   width: 100%;
   padding: 12px 14px;
-  border-radius: 8px;
+  background: var(--card-light);
   border: 1px solid var(--border);
-  background: #0c0f13;
+  border-radius: 8px;
+
   color: var(--text);
   font-size: 15px;
   box-sizing: border-box;
@@ -138,33 +144,37 @@ select {
 
 input:focus,
 select:focus {
-  border-color: var(--accent);
   outline: none;
-  box-shadow: 0 0 0 3px rgba(76, 194, 255, 0.16);
+  border-color: var(--accent);
+  box-shadow: 0 0 0 3px rgba(76, 194, 255, 0.2);
 }
 
-/* =============== BUTTONS =============== */
+/* ======================================================
+   BUTTONS
+====================================================== */
 
 .buttons {
   display: flex;
   gap: 12px;
-  margin-bottom: 24px;
+  margin-bottom: 26px;
   align-items: center;
 }
 
 button {
-  padding: 10px 18px;
+  padding: 11px 20px;
   border-radius: 10px;
   border: none;
+  cursor: pointer;
+
   background: var(--accent);
   color: #031019;
   font-weight: 600;
-  cursor: pointer;
-  transition: 0.2s;
+
+  transition: 0.15s ease;
 }
 
 button:hover {
-  background: #69d0ff;
+  background: var(--accent-light);
   box-shadow: 0 0 10px var(--accent-glow);
 }
 
@@ -182,23 +192,29 @@ button.secondary:hover {
 .speed-control {
   margin-left: auto;
   display: flex;
-  gap: 10px;
   align-items: center;
+  gap: 10px;
 }
 
-/* ============= PAGE LAYOUT ============= */
+/* ======================================================
+   MAIN LAYOUT
+====================================================== */
 
 .main {
   display: grid;
-  grid-template-columns: 310px 1fr;
-  gap: 20px;
+  grid-template-columns: 320px 1fr;
+  gap: 22px;
 }
 
 @media(max-width: 900px) {
-  .main { grid-template-columns: 1fr; }
+  .main {
+    grid-template-columns: 1fr;
+  }
 }
 
-/* =============== FRAMES =============== */
+/* ======================================================
+   FRAMES VIEW
+====================================================== */
 
 .frames {
   display: flex;
@@ -208,48 +224,53 @@ button.secondary:hover {
 }
 
 .frame {
-  width: 72px;
-  height: 72px;
-  background: #0c1014;
-  border: 1px solid var(--border);
-  border-radius: 12px;
+  width: 80px;
+  height: 80px;
 
   display: flex;
   justify-content: center;
   align-items: center;
 
+  background: var(--card-light);
+  border-radius: 12px;
+  border: 1px solid var(--border);
+
   font-size: 22px;
   font-weight: 700;
 
-  transition: 0.25s;
+  transition: 0.25s ease;
 }
 
 .frame.empty { color: var(--muted); }
 
 .frame.fault {
   border-color: var(--danger);
-  box-shadow: 0 0 14px var(--danger-glow);
+  box-shadow: 0 0 16px var(--danger-glow);
 }
 
 .frame.updated {
   border-color: var(--accent);
-  box-shadow: 0 0 14px var(--accent-glow);
+  box-shadow: 0 0 16px var(--accent-glow);
 }
 
-/* =============== TIMELINE =============== */
+/* ======================================================
+   TIMELINE
+====================================================== */
 
 .timeline {
   display: flex;
   flex-wrap: wrap;
-  gap: 12px;
-  margin-top: 16px;
+  gap: 10px;
+  margin-top: 14px;
 }
 
 .tick {
   padding: 8px 12px;
-  background: #0c1014;
-  border: 1px solid var(--border);
   border-radius: 10px;
+
+  background: var(--card-light);
+  border: 1px solid var(--border);
+
   font-size: 16px;
   font-weight: 600;
 }
@@ -260,63 +281,62 @@ button.secondary:hover {
 }
 
 .tick.fault {
-  background: rgba(255, 95, 95, 0.13);
+  background: rgba(255, 95, 95, 0.12);
   border-color: var(--danger);
 }
 
-/* =============== LOG SECTION =============== */
+/* ======================================================
+   LOG VIEW
+====================================================== */
 
 .log {
-  background: #0c1014;
-  border: 1px solid var(--border);
-  padding: 18px;
+  background: var(--card-light);
   border-radius: 12px;
+  padding: 18px;
+  border: 1px solid var(--border);
 
   font-family: "JetBrains Mono", monospace;
   font-size: 14px;
-  max-height: 310px;
+  max-height: 330px;
   overflow-y: auto;
+
   white-space: pre-wrap;
   line-height: 1.55;
-  color: var(--text);
-
-  scroll-behavior: smooth;
 }
 
-/* smooth gaps between entries */
-.log br { margin-bottom: 6px; }
-
-/* custom scrollbar */
 .log::-webkit-scrollbar { width: 8px; }
 .log::-webkit-scrollbar-track {
-  background: #0a0d10;
+  background: #0c0f13;
   border-radius: 10px;
 }
 .log::-webkit-scrollbar-thumb {
-  background: #242c32;
+  background: #2b333a;
   border-radius: 10px;
 }
 .log::-webkit-scrollbar-thumb:hover {
-  background: #3a444c;
+  background: #3f4952;
 }
 
-/* =============== STATS PANEL =============== */
+/* ======================================================
+   STATS PANEL
+====================================================== */
 
 .stats {
   display: flex;
   flex-wrap: wrap;
   gap: 14px;
-  margin-top: 12px;
+  margin-top: 14px;
 }
 
 .stat {
-  padding: 12px;
+  padding: 14px;
+  min-width: 120px;
+
+  background: var(--card-light);
   border-radius: 10px;
-  background: #0c1014;
   border: 1px solid var(--border);
 
-  min-width: 120px;
+  text-align: center;
   font-size: 14px;
   font-weight: 600;
-  text-align: center;
 }
