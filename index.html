@@ -28,7 +28,7 @@
       </div>
 
       <div class="panel">
-        <label>Algorithm (Paging)</label>
+        <label>Algorithm (Paging / Virtual)</label>
         <select id="algo">
           <option value="FIFO">FIFO</option>
           <option value="LRU">LRU</option>
@@ -55,7 +55,7 @@
       <div class="panel" id="segInputs" style="display:none">
         <label>Segments (format: name:base:limit, comma separated)</label>
         <input id="segments" type="text" value="code:0:199,data:200:399,stack:400:599" />
-        <label style="margin-top:10px">Logical address to access (format: segmentName:offset)</label>
+        <label style="margin-top:10px">Logical address to access (segment:offset)</label>
         <input id="segAddr" type="text" value="code:10" />
       </div>
 
@@ -63,9 +63,9 @@
       <div class="panel" id="virtInputs" style="display:none">
         <label>Page size (bytes)</label>
         <input id="pageSize" type="number" min="1" value="100" />
-        <label style="margin-top:10px">Logical address (number) or reference string (space separated)</label>
+        <label style="margin-top:10px">Logical address or reference string (space separated)</label>
         <input id="virtRef" type="text" value="0 120 250 120 340 50 260" />
-        <label style="margin-top:8px;font-size:13px;color:var(--muted)">When reference string provided, run Step/Run processes sequence</label>
+        <label style="margin-top:8px;font-size:13px;color:var(--muted)">When reference string provided, Step/Run processes sequence</label>
       </div>
     </div>
 
@@ -128,10 +128,25 @@
           </div>
         </div>
 
+        <!-- MEMORY ACCESS GRAPH PANEL -->
+        <div class="panel">
+          <div class="panel-header-row">
+            <strong>Memory Access Timeline — Hit (1) vs Fault (0)</strong>
+            <div class="graph-legend">
+              <span class="legend-dot hit"></span><span class="legend-label">Hit (1)</span>
+              <span class="legend-dot fault"></span><span class="legend-label">Fault (0)</span>
+            </div>
+          </div>
+          <canvas id="accessChart" height="180"></canvas>
+          <div class="graph-actions">
+            <button id="downloadGraph" class="secondary small">Download Graph (PNG)</button>
+            <button id="downloadLog" class="secondary small">Download Log (TXT)</button>
+          </div>
+          <div id="accessTooltip" class="graph-tooltip" style="display:none;"></div>
+        </div>
+
       </section>
     </div>
-
-    <footer style="margin-top:18px;color:var(--muted);font-size:13px">Open this file in browser. Use Live Server for faster testing.</footer>
   </div>
 
   <script src="app.js" defer></script>
