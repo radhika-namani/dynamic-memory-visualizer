@@ -111,6 +111,14 @@ header {
   box-shadow: 0 4px 18px var(--shadow);
 }
 
+/* header row inside panel (for graph) */
+.panel-header-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+}
+
 /* ======================================================
    CONTROLS GRID
 ====================================================== */
@@ -189,6 +197,11 @@ button.secondary:hover {
   color: var(--accent);
 }
 
+button.small {
+  padding: 7px 14px;
+  font-size: 12px;
+}
+
 .speed-control {
   margin-left: auto;
   display: flex;
@@ -246,11 +259,13 @@ button.secondary:hover {
 .frame.fault {
   border-color: var(--danger);
   box-shadow: 0 0 16px var(--danger-glow);
+  transform: translateY(-2px);
 }
 
 .frame.updated {
   border-color: var(--accent);
   box-shadow: 0 0 16px var(--accent-glow);
+  transform: translateY(-2px);
 }
 
 /* ======================================================
@@ -273,11 +288,14 @@ button.secondary:hover {
 
   font-size: 16px;
   font-weight: 600;
+
+  transition: 0.2s ease;
 }
 
 .tick.current {
   border-color: var(--accent);
   box-shadow: 0 0 8px var(--accent-glow);
+  transform: translateY(-1px);
 }
 
 .tick.fault {
@@ -339,4 +357,80 @@ button.secondary:hover {
   text-align: center;
   font-size: 14px;
   font-weight: 600;
+}
+
+/* ======================================================
+   FRAME HEADER / VIZ
+====================================================== */
+
+.frame-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+}
+
+/* ======================================================
+   GRAPH STYLES
+====================================================== */
+
+#accessChart {
+  width: 100%;
+  background: var(--card-light);
+  border-radius: 10px;
+  margin-top: 12px;
+  padding: 10px;
+  border: 1px solid var(--border);
+  box-sizing: border-box;
+}
+
+/* Legend */
+.graph-legend {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 12px;
+  color: var(--muted);
+  flex-wrap: wrap;
+}
+
+.legend-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 999px;
+  display: inline-block;
+  margin-right: 4px;
+}
+
+.legend-dot.hit {
+  background: #00ff55;
+}
+
+.legend-dot.fault {
+  background: #ff4444;
+}
+
+.legend-label {
+  margin-right: 10px;
+}
+
+/* Graph actions */
+.graph-actions {
+  display: flex;
+  gap: 8px;
+  margin-top: 10px;
+}
+
+/* Tooltip */
+.graph-tooltip {
+  position: fixed;
+  background: rgba(21, 26, 32, 0.95);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 6px 10px;
+  font-size: 12px;
+  color: var(--text);
+  pointer-events: none;
+  z-index: 1000;
+  box-shadow: 0 4px 12px var(--shadow);
 }
